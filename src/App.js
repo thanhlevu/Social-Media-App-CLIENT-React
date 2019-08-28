@@ -11,7 +11,7 @@ import Navbar from "./components/Navbar";
 import home from "./pages/home";
 import login from "./pages/login";
 import signup from "./pages/signup";
-
+ 
 const theme = createMuiTheme({
   palette: {
     primary: {
