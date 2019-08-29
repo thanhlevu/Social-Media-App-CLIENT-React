@@ -63,6 +63,7 @@ class login extends Component {
         console.log("userData", userData)
         axios.post('/login', userData).then(res => {
             console.log(res.data)
+            localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`)
             this.setState({
                 loading: false
             })
@@ -99,7 +100,7 @@ class login extends Component {
                                 {errors.general}
                             </Typography>
                         )}
-                        <Button type="submit" variant="contained" color="primary" className={classes.button} disabled={loading}>Login
+                        <Button type="submit" variant="contained" color="primary" className={classes.button} disabled={loading}>Log In
                         {loading && (
                                 <CircularProgress size={30} className={classes.progress} />
                             )}
@@ -114,5 +115,7 @@ class login extends Component {
     }
 }
 
-login.prototypes = {};
+login.propTypes = {
+    classes: PropTypes.object.isRequired
+}
 export default withStyles(styles)(login);

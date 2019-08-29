@@ -12,7 +12,8 @@ import CardMedia from "@material-ui/core/CardMedia";
 
 const styles = {
   card: {
-    display: "flex"
+    display: "flex",
+    marginBottom: 16
   },
   image: {
     minWidth: 200
