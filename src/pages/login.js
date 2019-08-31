@@ -35,6 +35,7 @@ class login extends Component {
             this.setState({ errors: nextProps.UI.errors })
         }
     }
+
     handleSubmit = (event) => {
         event.preventDefault()
         const userData = {
@@ -42,6 +43,7 @@ class login extends Component {
             password: this.state.password
         }
         this.props.loginUser(userData, this.props.history)
+        console.log("this.props.history", this.props.history)
     }
 
     handleChange = (event) => {

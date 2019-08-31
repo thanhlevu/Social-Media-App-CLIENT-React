@@ -1,15 +1,12 @@
-import { SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI } from '../types'
+import { SET_USER, SET_ERRORS, SET_UNAUTHENTICATED, CLEAR_ERRORS, LOADING_UI } from '../types'
 import axios from 'axios'
 
 export const loginUser = (userData, history) => (dispatch) => {
     dispatch({ type: LOADING_UI })
     axios.post('/login', userData).then(res => {
-        const FBIdToken = `Bearer ${res.data.token}`
-        localStorage.setItem('FBIdToken', FBIdToken)
-        axios.defaults.headers.common['Authorization'] = FBIdToken  //Automatically add Authorization header to all requests.
+        setAuthenticationHeader(res.data.token)
         dispatch(getUserData())
         dispatch({ type: CLEAR_ERRORS });
-
         history.push('/')
     }).catch(err => {
         dispatch({
@@ -19,6 +16,26 @@ export const loginUser = (userData, history) => (dispatch) => {
     })
 }
 
+export const signupUser = (newUserData, history) => (dispatch) => {
+    dispatch({ type: LOADING_UI })
+    axios.post('/signup', newUserData).then(res => {
+        setAuthenticationHeader(res.data.token)
+        dispatch(getUserData())
+        dispatch({ type: CLEAR_ERRORS });
+        history.push('/')
+    }).catch(err => {
+        dispatch({
+            type: SET_ERRORS,
+            payload: err.response.data
+        })
+    })
+}
+
+export const logoutUser = () => (dispatch) => {
+    localStorage.removeItem('FBIdToken')
+    delete axios.defaults.headers.common['Authorization']
+    dispatch({ type: SET_UNAUTHENTICATED })
+}
 export const getUserData = () => (dispatch) => {
     axios.get('/user').then(res => {
         dispatch({
@@ -26,4 +43,10 @@ export const getUserData = () => (dispatch) => {
             payload: res.data
         })
     }).catch(err => console.log(err))
+}
+
+const setAuthenticationHeader = (token) => {
+    const FBIdToken = `Bearer ${token}`
+    localStorage.setItem('FBIdToken', FBIdToken)
+    axios.defaults.headers.common['Authorization'] = FBIdToken  //Automatically add Authorization header to all requests.
 }
