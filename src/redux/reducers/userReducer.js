@@ -1,5 +1,4 @@
 import { SET_USER, SET_AUTHENTICATED, SET_UNAUTHENTICATED, LOADING_USER } from '../types'
-import { func } from 'prop-types';
 
 const initialState = {
     authenticated: false,
