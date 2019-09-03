@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import withStyles from '@material-ui/core/styles/withStyles'
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
+import LikeButton from './LikeButton'
 
 //MUI
 import Button from '@material-ui/core/Button';
@@ -22,7 +23,7 @@ import ChatIcon from '@material-ui/icons/Chat'
 
 //Redux
 import { connect } from 'react-redux'
-import { getScream, clearErrors } from '../redux/actions/dataActions'
+import { getScream, clearErrors } from '../../redux/actions/dataActions'
 import { Grid } from '@material-ui/core';
 
 const styles = (theme) => ({
@@ -43,6 +44,15 @@ const styles = (theme) => ({
     closeButton: {
         position: 'absolute',
         left: '90%'
+    },
+    expandButton: {
+        position: "absolute",
+        left: "90%"
+    },
+    spinnerDiv: {
+        textAlign: "center",
+        marginTop: 50,
+        marginBottom: 50
     }
 });
 
@@ -88,7 +98,7 @@ class ScreamDialog extends Component {
                         </Typography>
                         <hr className={classes.invisibleSeparator} />
                         <Typography variant="body1">{body}</Typography>
-                        {/* <LikeButton screamId={screamId} /> */}
+                        <LikeButton screamId={screamId} />
                         <span>{likeCount} likes</span>
                         <MyButton tip="comments">
                             <ChatIcon color="primary" />
