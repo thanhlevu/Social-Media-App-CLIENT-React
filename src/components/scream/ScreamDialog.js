@@ -5,33 +5,27 @@ import MyButton from '../../util/MyButton';
 import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
 import LikeButton from './LikeButton'
+import Comments from './Comments'
 
 //MUI
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Typography from '@material-ui/core/Typography'
 
 //Icon
-import AddIcon from '@material-ui/icons/Add'
 import CloseIcon from '@material-ui/icons/Close'
 import UnfoldMore from '@material-ui/icons/UnfoldMore'
 import ChatIcon from '@material-ui/icons/Chat'
 
 //Redux
 import { connect } from 'react-redux'
-import { getScream, clearErrors } from '../../redux/actions/dataActions'
+import { getScream } from '../../redux/actions/dataActions'
 import { Grid } from '@material-ui/core';
 
 const styles = (theme) => ({
     ...theme,
-    invisibleSeparator: {
-        border: 'none',
-        margin: 4
-    },
+
     profileImage: {
         maxWidth: 200,
         height: 200,
@@ -72,7 +66,7 @@ class ScreamDialog extends Component {
     }
 
     render() {
-        const { classes, scream: { screamId, body, createdAt, likeCount, commentCount, userImage, userHandle }, UI: { loading } } = this.props
+        const { classes, scream: { screamId, body, createdAt, likeCount, commentCount, userImage, userHandle, comments }, UI: { loading } } = this.props
 
         const dialogMarkup = loading ? (
             <div className={classes.spinnerDiv}>
@@ -105,6 +99,8 @@ class ScreamDialog extends Component {
                         </MyButton>
                         <span>{commentCount} comments</span>
                     </Grid>
+                    <hr className={classes.visibleSeparator} />
+                    <Comments comments={comments} />
                 </Grid>
             );
         return (

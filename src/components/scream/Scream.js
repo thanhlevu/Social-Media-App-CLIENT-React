@@ -16,8 +16,6 @@ import Typography from "@material-ui/core/Typography";
 
 // Icons
 import ChatIcon from "@material-ui/icons/Chat"
-import FavoriteIcon from "@material-ui/icons/Favorite"
-import FavoriteBorder from "@material-ui/icons/FavoriteBorder"
 
 // Redux
 import { connect } from 'react-redux'
