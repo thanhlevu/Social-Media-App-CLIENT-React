@@ -1,4 +1,4 @@
-import { SET_USER, SET_ERRORS, SET_UNAUTHENTICATED, CLEAR_ERRORS, LOADING_UI, LOADING_USER } from '../types'
+import { SET_USER, SET_ERRORS, SET_UNAUTHENTICATED, CLEAR_ERRORS, LOADING_UI, LOADING_USER, LOADING_DATA, SET_SCREAMS } from '../types'
 import axios from 'axios'
 
 export const loginUser = (userData, history) => (dispatch) => {
@@ -64,6 +64,7 @@ export const editUserDetails = (userDetails) => (dispatch) => {
         dispatch(getUserData())
     }).catch((err) => console.error(err))
 }
+
 
 const setAuthenticationHeader = (token) => {
     const FBIdToken = `Bearer ${token}`

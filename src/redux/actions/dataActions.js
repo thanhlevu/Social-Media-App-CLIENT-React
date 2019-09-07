@@ -69,7 +69,25 @@ export const likeScream = screamId => dispatch => {
         })
     }).catch(err => console.error(err))
 }
-
+ 
+// Get all user screams
+export const getUserData = (userHandle) => (dispatch) => {
+    dispatch({ type: LOADING_DATA });
+    axios
+        .get(`/user/${userHandle}`)
+        .then((res) => {
+            dispatch({
+                type: SET_SCREAMS,
+                payload: res.data.screams
+            });
+        })
+        .catch(() => {
+            dispatch({
+                type: SET_SCREAMS,
+                payload: null
+            });
+        });
+};
 
 // Unlike a scream
 export const unlikeScream = screamId => dispatch => {

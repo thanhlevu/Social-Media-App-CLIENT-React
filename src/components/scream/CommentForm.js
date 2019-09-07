@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import withStyles from '@material-ui/core/styles/withStyles'
 
@@ -43,7 +43,9 @@ export class CommentForm extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.submitComment(this.props.screamId, { body: this.state.body })
-
+        this.setState({
+            errors: ""
+        })
     }
 
 
