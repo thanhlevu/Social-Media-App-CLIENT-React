@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
 import MyButton from '../../util/MyButton'
 import PostScream from '../scream/PostScream'
+import Notifications from "./Notifications"
 
 //Material-UI
 import AppBar from "@material-ui/core/AppBar";
@@ -11,7 +12,6 @@ import Button from "@material-ui/core/Button";
 
 //Icons
 import HomeIcon from "@material-ui/icons/Home"
-import Notifications from "@material-ui/icons/Notifications"
 
 class Navbar extends Component {
     render() {
@@ -27,9 +27,7 @@ class Navbar extends Component {
                                     <HomeIcon />
                                 </MyButton>
                             </Link>
-                            <MyButton tip="Notifications">
                                 <Notifications />
-                            </MyButton>
                         </Fragment>
                     ) : (
                             <Fragment>
