@@ -41,7 +41,7 @@ class Notifications extends Component {
             .map((notification) => notification.notificationId)
 
         console.log("unreadNotificationsIds", unreadNotificationsIds)
-        this.props.markNotificationsRead(unreadNotificationsIds)
+        if (unreadNotificationsIds) this.props.markNotificationsRead(unreadNotificationsIds)
     }
 
     render() {
